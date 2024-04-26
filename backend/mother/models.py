@@ -3,28 +3,32 @@ from django.db import models
 # Create your models here.
 
 class Mother (models.Model):
-    jina_la_kliniki= models.CharField(max_length=255)
-    jina_la_mama=models.CharField(max_length=255)
-    namba_ya_uandikishaji=models.IntegerField()
-    namba_ya_hati_punguzo_ya_chandarua=models.IntegerField()
-    umri=models.IntegerField()
-    elimu=models.CharField(max_length=255)
-    kazi=models.CharField(max_length=255)
-    jina_la_mume_mwenzi=models.CharField(max_length=255)
-    mume_mwenzi_umri=models.IntegerField()
-    mume_mwenzi_elimu=models.CharField(max_length=255)
-    mume_mwenzi_kazi=models.CharField(max_length=255)
-    kjjimtaa_kitongoji=models.CharField(max_length=255)
-    jina_la_mwenyekiti=models.CharField(max_length=255)
-    mimba_ya_ngapi=models.IntegerField()
-    watoto_walio_hai=models.IntegerField()
-    amezaa_marangapi_ngapi=models.IntegerField()
+    healthcare_centre_name= models.CharField(max_length=255)
+    mother_name=models.CharField(max_length=255)
+    registration_number=models.IntegerField()
+    mosquito_net_voucher_number=models.IntegerField()
+    mother_age=models.IntegerField()
+    mother_education=models.CharField(max_length=255)
+    mother_employment=models.CharField(max_length=255)
+    Height =models.CharField(max_length=255)
+    partner_name=models.CharField(max_length=255)
+    partner_age=models.IntegerField()
+    partner_work=models.CharField(max_length=255)
+    partner_education=models.CharField(max_length=255)
+    address=models.CharField(max_length=255)
+    Chairperson_name=models.CharField(max_length=255)
+    pregnancies=models.IntegerField()
+    alive_children=models.IntegerField()
+    miscarrimother_ages = models.CharField(max_length=255)
+    births=models.IntegerField()
+    miscarrimother_age_year = models.CharField(max_length=255)
+    miscarrimother_age_mother_age = models.CharField(max_length=255)
 
     def __str__(self):
-        return self.jina_la_mama
+        return self.mother_name
 
 
-class Visit(models.Model):
+class Mother_visit(models.Model):
     Tarehe=models.DateField()
     Joto_la_Mwili=models.IntegerField()
     Blood_Preasure_140_100_na_zaidi=models.IntegerField()
@@ -43,3 +47,6 @@ class Visit(models.Model):
 
     def __str__(self):
         return self.Tarehe
+
+# jabjsjacb
+##bsZHBSHfB
