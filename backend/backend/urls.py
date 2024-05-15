@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 from mother.views import MotherViewSet, MotherVisitViewSet
-from child.views import ChildViewSet, ChildVisitViewSet
+from child.views import ChildViewSet, ChildVisitViewSet, ChildConsultationVisitView
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
@@ -31,6 +31,7 @@ router.register(r'child', ChildViewSet)
 router.register(r'child_visit', ChildVisitViewSet)
 router.register(r'mother', MotherViewSet)
 router.register(r'mother_visit',MotherVisitViewSet)
+router.register(r'child_consult_visit', ChildConsultationVisitView)
 
 
 
