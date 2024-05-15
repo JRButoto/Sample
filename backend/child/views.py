@@ -4,7 +4,7 @@ from rest_framework import permissions
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .models import Child, Child_visit, Consultation_Visit_Child
-from .serializers import ChildSerializer, ChildVisitSerializer, ChildConsultationVisitSerializer
+from .serializers import ChildSerializer, ChildVisitSerializer, ChildConsultationVisitSerializer, ChildSummarySerializer, ChildVisitSummarySerializer
 
 # Create your views here.
 
@@ -28,19 +28,17 @@ class ChildConsultationVisitView(viewsets.ModelViewSet):
 
 @api_view(['GET'])
 def getChildSummary(request):
-    children_data = Child.objects.values('child_name', 'child_gender','mother')
+    children_data = Child.objects.all()
+    children_data_Serializer = ChildSummarySerializer(children_data, many = True)
     
     # Extract weight and height from Child_visit objects
-    children_visits_data = Child_visit.objects.values('Visit_number', 'Date')
-
-    # Convert the querysets to lists
-    children_data_list = list(children_data)
-    children_visits_data_list = list(children_visits_data)
+    children_visits_data = Child_visit.objects.all()
+    children_visit_data_Serializer = ChildVisitSummarySerializer(children_visits_data, many = True)
     
     # Construct the response data
     response_data = {
-        'children': children_data_list,
-        'children_visits': children_visits_data_list
+        'children': children_data_Serializer.data,
+        'children_visits': children_visit_data_Serializer.data
     }
 
     return Response(response_data)

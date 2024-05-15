@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
 from .filter import MotherFilter
 from .models import Mother, Mother_visit
-from .serializers import MotherSerializer, MotherVisitSerializer
+from .serializers import MotherSerializer, MotherVisitSerializer, MotherSummarySerializer, MotherVisitSummarySerializer
 
 # Create your views here.
 
@@ -26,21 +26,20 @@ class MotherVisitViewSet(viewsets.ModelViewSet):
 
 @api_view(['GET'])
 def getMotherSummary(request):
-    mother_data = Mother.objects.values('mother_name', 'mother_age')
+    Mother_data = Mother.objects.all()
+    Mother_data_Serializer = MotherSummarySerializer(Mother_data, many = True)
     
     # Extract weight and height from Child_visit objects
-    mother_visits_data = Mother_visit.objects.values('visit_number', 'visit_date')
-
-    # Convert the querysets to lists
-    mother_data_list = list(mother_data)
-    mother_visits_data_list = list(mother_visits_data)
+    Mother_visits_data = Mother_visit.objects.all()
+    Mother_visit_data_Serializer = MotherVisitSummarySerializer(Mother_visits_data, many = True)
     
     # Construct the response data
     response_data = {
-        'children': mother_data_list,
-        'children_visits': mother_visits_data_list
+        'Mother': Mother_data_Serializer.data,
+        'Mother_visits': Mother_visit_data_Serializer.data
     }
 
     return Response(response_data)
+
 
     
