@@ -9,7 +9,6 @@ from datetime import date
 #         model= Child
 #         fields= "__all__"
 
-
 class ChildSerializer(serializers.HyperlinkedModelSerializer):
     mother_name = serializers.CharField()
     mother = serializers.HyperlinkedRelatedField(view_name='mother-detail', read_only = True)
