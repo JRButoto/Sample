@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     "corsheaders",
     "mother",
     "child",
-    "user"
+    "user",
+    "phone_field"
 ]
 
 MIDDLEWARE = [

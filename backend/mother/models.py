@@ -1,4 +1,15 @@
 from django.db import models
+from phone_field import PhoneField
+import phonenumbers
+from django.core.exceptions import ValidationError
+
+# def validate_tanzanian_phone(value):
+#     try:
+#         z_number = phonenumbers.parse(value, "TZ")
+#         if not phonenumbers.is_valid_number(z_number):
+#             raise ValidationError("Invalid phone number for Tanzania.")
+#     except phonenumbers.NumberParseException:
+#         raise ValidationError("Invalid phone number format.")
 
 # Create your models here.
 
@@ -25,10 +36,12 @@ class Mother (models.Model):
     registrant_type = models.CharField(max_length=255)
     parent_type = models.CharField(max_length=255,null=True, blank=True)
     gender = models.CharField(max_length=255)
-
+    phone = PhoneField(help_text='Contact phone number')
+    # phone = PhoneField(unique=True,validators=[validate_tanzanian_phone], help_text='Contact phone number')
 
     def __str__(self):
         return self.mother_name
+
 
 
 class Mother_visit(models.Model):
