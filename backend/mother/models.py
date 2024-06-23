@@ -10,19 +10,22 @@ class Mother (models.Model):
     mother_age=models.IntegerField()
     mother_education=models.CharField(max_length=255)
     mother_employment=models.CharField(max_length=255)
-    Height =models.IntegerField()
+    height =models.IntegerField()
     partner_name=models.CharField(max_length=255)
     partner_age=models.IntegerField()
     partner_work=models.CharField(max_length=255)
     partner_education=models.CharField(max_length=255)
-    address=models.CharField(max_length=255)
+    residential_region = models.CharField(max_length=255)
+    residential_district = models.CharField(max_length=255)
     Chairperson_name=models.CharField(max_length=255)
-    pregnancies=models.IntegerField()
-    alive_children=models.IntegerField()
-    miscarriages = models.IntegerField()
-    births=models.IntegerField()
-    miscarriage_age = models.IntegerField()
-    miscarriage_year = models.IntegerField()
+    pregnancies=models.IntegerField(null=True, blank=True)
+    alive_children=models.IntegerField(null=True, blank=True)
+    miscarriages = models.IntegerField(null=True, blank=True)
+    births=models.IntegerField(null=True, blank=True)
+    registrant_type = models.CharField(max_length=255)
+    parent_type = models.CharField(max_length=255,null=True, blank=True)
+    gender = models.CharField(max_length=255)
+
 
     def __str__(self):
         return self.mother_name
@@ -32,9 +35,11 @@ class Mother_visit(models.Model):
 
     #Foreign key.
     mother=models.ForeignKey('Mother', on_delete=models.CASCADE)
+    mother_name = models.CharField(max_length=255)
+
     
     # Visit details
-    visit_number = models.IntegerField()
+    visit_number = models.CharField(max_length=255)
     visit_date = models.DateField()
 
     # Section 2: Health Measurements

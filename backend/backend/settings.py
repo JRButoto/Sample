@@ -41,11 +41,10 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework_simplejwt.token_blacklist",
-    "django_filters",
     "corsheaders",
     "mother",
     "child",
-    "users",
+    "user"
 ]
 
 MIDDLEWARE = [
@@ -129,9 +128,6 @@ STATIC_URL = "static/"
 
 #IsAuthenticatedOrReadOnly
 REST_FRAMEWORK = {
-    # 'DEFAULT_FILTER_BACKENDS': (
-    #     'django_filters.rest_framework.DjangoFilterBackend',
-    # ),
 
     'DEFAULT_PERMISSION_CLASSES':[
         'rest_framework.permissions.AllowAny',
@@ -150,7 +146,7 @@ REST_FRAMEWORK = {
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-AUTH_USER_MODEL = "users.HealthcareWorker"
+AUTH_USER_MODEL = "user.HealthcareWorker"
 
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=5),
@@ -195,3 +191,5 @@ SIMPLE_JWT = {
 
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
+
+

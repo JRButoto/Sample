@@ -9,14 +9,17 @@ class Child(models.Model):
     child_name = models.CharField(max_length=255)
     healthcare_centre_name = models.CharField(max_length=255)
     mother = models.ForeignKey(Mother, on_delete=models.CASCADE)
+    mother_name = models.CharField(max_length=255)
     child_number = models.IntegerField()
     child_gender = models.CharField(max_length=255)
     date_of_birth = models.DateField()
     weight_at_birth = models.IntegerField()
     length_at_birth = models.IntegerField()
-    place_of_birth = models.CharField(max_length=255)
+    birth_region = models.CharField(max_length=255)
+    birth_district = models.CharField(max_length=255)
+    residential_region = models.CharField(max_length=255)
+    residential_district = models.CharField(max_length=255)
     maternal_health_worker = models.CharField(max_length=255)
-    child_residence = models.CharField(max_length=255)
 
     def __str__(self):
         return self.child_name
@@ -26,6 +29,8 @@ class Child_visit(models.Model):
 
 # Foreign key:
     child = models.ForeignKey(Child, on_delete=models.CASCADE)
+    child_name = models.CharField(max_length=255)
+
 
 # The child must have a visit number
     visit_number = models.IntegerField()
@@ -51,6 +56,7 @@ class Child_visit(models.Model):
 # basic VISIT details
     # date_same_as_before = models.DateField()
     weight_grams = models.IntegerField()  #Weight (Grams)
+    height = models.IntegerField() # height (cm)
     anemia = models.CharField(max_length=255) # Anemia (Hb or palmar pallor)
     body_temperature = models.IntegerField() # Body temperature (°C)
 
@@ -92,6 +98,10 @@ class Child_visit(models.Model):
 
 
 class Consultation_Visit_Child(models.Model):
+    
+    child = models.ForeignKey(Child, on_delete=models.CASCADE)
+    child_name = models.CharField(max_length=255)
+
     date = models.DateField()
     visit_type = models.CharField(max_length=255)
     weight = models.CharField(max_length=255)

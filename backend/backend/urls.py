@@ -29,9 +29,9 @@ from rest_framework_simplejwt.views import (
 router = routers.DefaultRouter()
 router.register(r'child', ChildViewSet)
 router.register(r'child_visit', ChildVisitViewSet)
+router.register(r'child_consult_visit', ChildConsultationVisitView)
 router.register(r'mother', MotherViewSet)
 router.register(r'mother_visit',MotherVisitViewSet)
-router.register(r'child_consult_visit', ChildConsultationVisitView)
 
 
 
@@ -41,9 +41,7 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    path('api/', include('users.urls', namespace='users')),
+    path('api/', include('user.urls', namespace='user')),
     path('api/', include('child.urls',namespace='child')),
-    path('api/', include('mother.urls',namespace='mother')),
-
-
+    path('api/', include('mother.urls',namespace='mother'))
 ]
