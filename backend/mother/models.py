@@ -100,7 +100,7 @@ class Mother_visit(models.Model):
     pmtct_ctx = models.CharField(max_length=255)
     postpartum_medications = models.CharField(max_length=255)
     vitamin_a = models.CharField(max_length=255)
-    date_of_next_visit = models.CharField(max_length=255)
+    date_of_next_visit = models.DateField()
     provider_name = models.CharField(max_length=255)
     provider_title = models.CharField(max_length=255)
 

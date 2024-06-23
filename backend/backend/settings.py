@@ -13,9 +13,15 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from pathlib import Path
 from datetime import timedelta
 from django.conf import settings
+import os
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+
+# Load environment variables from .env file
+load_dotenv()
 
 
 # Quick-start development settings - unsuitable for production
@@ -45,7 +51,8 @@ INSTALLED_APPS = [
     "mother",
     "child",
     "user",
-    "phone_field"
+    "phone_field",
+    "notifications"
 ]
 
 MIDDLEWARE = [
@@ -188,6 +195,12 @@ SIMPLE_JWT = {
     "SLIDING_TOKEN_OBTAIN_SERIALIZER": "rest_framework_simplejwt.serializers.TokenObtainSlidingSerializer",
     "SLIDING_TOKEN_REFRESH_SERIALIZER": "rest_framework_simplejwt.serializers.TokenRefreshSlidingSerializer",
 }
+
+
+
+AFRICAS_TALKING_USERNAME =os.getenv("AFRICAS_TALKING_USERNAME", default="")
+AFRICAS_TALKING_API_KEY = os.getenv("AFRICAS_TALKING_API_KEY", default="")
+
 
 
 CORS_ORIGIN_ALLOW_ALL = True
